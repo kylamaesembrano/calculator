@@ -1,1 +1,62 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="viewport-fit=cover, width=device-width,
+initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Simple Calculator</title>
+<script>window.Ionic = { config: { mode: 'md' } };</script>
+<script type="module"
+src="https://cdn.jsdelivr.net/npm/@ionic/core@8.3.0/dist/ionic/ionic.esm.js">
+</script>
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/@ionic/core@8.3.0/css/ionic.bundle.css" />
+</head>
+<body>
+<ion-app>
+<ion-header>
+<ion-toolbar>
+<ion-title>Simple Calculator</ion-title>
+</ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+<ion-input id="first" type="number" inputmode="decimal" label="First
+Number" label-placement="floating"></ion-input>
+<ion-input id="second" type="number" inputmode="decimal" label="Second
+Number" label-placement="floating"></ion-input>
+<div style="margin-top: 12px;">
+<ion-button onclick="calculate('add')">Add</ion-button>
+<ion-button onclick="calculate('subtract')">Subtract</ion-button>
+<ion-button onclick="calculate('multiply')">Multiply</ion-button>
+<ion-button onclick="calculate('divide')">Divide</ion-button>
+</div>
+<p id="result" style="font-size: 1.1rem;">Result: 0</p>
+</ion-content>
+</ion-app>
+<script>
+function calculate(operation) {
+var first = document.getElementById('first').value;
+var second = document.getElementById('second').value;
+var output = document.getElementById('result');
+if (first === '' || second === '' || first == null || second == null) {
+output.textContent = 'Result: Please enter both numbers';
+return;
+}
+var a = Number(first);
+var b = Number(second);
+var answer;
+if (operation === 'add') answer = a + b;
+else if (operation === 'subtract') answer = a - b;
+else if (operation === 'multiply') answer = a * b;
+else if (operation === 'divide') {
+if (b === 0) {
+output.textContent = 'Result: Cannot divide by zero';
+return;
+}
+answer = a / b;
+}
+output.textContent = 'Result: ' + parseFloat(answer.toPrecision(12));
+}
+</script>
+</body>
+</html>
